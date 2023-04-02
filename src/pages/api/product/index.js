@@ -1,13 +1,15 @@
+import { create, list, read, update, remove } from "@/server/controllers/product"
+
 export default (req,res)=>{
     //code
     if(req.method === 'GET'){
-        res.send('hello GET')
+        list(req,res)
     }else if(req.method === 'POST'){
-        res.send('hello POST')
+        create(req,res)
     }else if(req.method === 'DELETE'){
-        res.send("Hello DELETE")
+        remove(req,res)
     }else if(req.method === 'PUT'){
-        res.send("Hello PUT")
+        update(req,res)
     }else{
         res.status(400).send("Error!!")
     }
