@@ -1,4 +1,7 @@
 import { create, list, read, update, remove } from "@/server/controllers/product"
+import { connectDB } from "@/server/config/db"
+
+connectDB();
 
 export default (req,res)=>{
     //code
