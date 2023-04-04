@@ -1,8 +1,12 @@
+import Product from "../models/product";
+
+
 export const create = async (req,res)=>{  // async รอฉันด้วย
     try{
         // code
-        console.log('Controller Create');
-        res.send('Controller Create')
+        const newProduct = await new Product(req.body).save()
+        console.log(newProduct);
+        res.send(newProduct)
     } catch (err){
         //check err
         console.log(err);
