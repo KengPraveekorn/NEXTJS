@@ -17,8 +17,9 @@ export const create = async (req,res)=>{  // async รอฉันด้วย
 
 export const list = async(req,res)=>{     // list คือการดูรายการทั้งหมด
     try{
-        console.log("Controller list");
-        res.send("Controller list")
+        const listData = await Product.find({}).exec()
+        console.log(listData);
+        res.send(listData)
     } catch(err){
         console.log(err);
         res.status(400).send("Server list Error!")
@@ -27,28 +28,34 @@ export const list = async(req,res)=>{     // list คือการดูรา
 
 export const read = async(req,res)=>{     // read คือการดูรายการใดรายการ 1 คือดู ID ของรายการ
     try{
-        console.log("Controller read");
-        res.send("Controller read")
+        const id = req.query.id
+        const readData = await Product.findOne({_id:id}).exec()
+        console.log(readData);
+        res.send(readData)
     } catch(err){
         console.log(err);
         res.status(400).send("Server read Error!")
     }
 }
 
-export const update = async(req,res)=>{     // read คือการดูรายการใดรายการ 1 คือดู ID ของรายการ
+export const update = async(req,res)=>{     
     try{
-        console.log("Controller update");
-        res.send("Controller update")
+        const id = req.query.id
+        const updateData = await Product.findOneAndUpdate({_id:id},req.body,{new: true}).exec()
+        console.log(updateData);
+        res.send(updateData)
     } catch(err){
         console.log(err);
         res.status(400).send("Server update Error!")
     }
 }
 
-export const remove = async(req,res)=>{     // read คือการดูรายการใดรายการ 1 คือดู ID ของรายการ
+export const remove = async(req,res)=>{     
     try{
-        console.log("Controller remove");
-        res.send("Controller remove")
+        const id = req.query.id
+        const removeData = await Product.findByIdAndDelete({_id:id}).exec()
+        console.log(removeData);
+        res.send(removeData)
     } catch(err){
         console.log(err);
         res.status(400).send("Server remove Error!")
